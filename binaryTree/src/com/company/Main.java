@@ -12,11 +12,11 @@ class Node {
     }
 }
 
-class binaryTree {
+class BST {
     //root of a binary tree
     Node root;
     //constructor
-    public binaryTree() {
+    public BST() {
         this.root = null;
     }
     public void insert(int data) {
@@ -66,17 +66,64 @@ class binaryTree {
         preorder(root.right);
 
     }
+    // deleting an element
+    public void deleteNode(int data) {
+        deleteNode(root, data);
+    }
+    public Node deleteNode(Node root, int data) {
+        //return null when root is null, stopping condition
+        if (root == null)
+            return null;
+        //traverse the left subtree
+        else if(data < root.data){
+            root.left = deleteNode(root.left,data);
+        }
+        else if(data > root.data){
+            root.right = deleteNode(root.right, data);
+        }
+        //3 cases after finding target node
+        else {
+            //delete node
+            if (root.left != null & root.right != null) {
+                int rightMin = findRightMin(root.right);
+                root.data = rightMin;
+                //System.out.println(rightMin);
+                root.right = deleteNode(root.right,rightMin);
+                return root;
+            }
+            //case 2: node has 1 child.
+            else if (root.left != null) {
+                return root.left;
+            }
+            else if (root.right != null) {
+                return root.right;
+            }
+            //case 3: node has no child
+            else{
+                return null;
+            }
+        }
 
 
-}
+        return root;
+    }
+        public int findRightMin (Node current){
+            return current.left == null ? current.data : findRightMin(current.left);
+        }
+    }
+
+
+
 public class Main {
 
     public static void main(String[] args) {
         // write your code here
-        binaryTree bt = new binaryTree();
+        BST bt = new BST();
         bt.insert(8);
         bt.insert(6);
         bt.insert(16);
-        System.out.println(bt.search(8));
+        //bt.preorder();
+        bt.deleteNode(8);
+        bt.preorder();
     }
 }
