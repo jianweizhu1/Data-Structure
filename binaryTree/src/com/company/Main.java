@@ -122,8 +122,11 @@ public class Main {
         bt.insert(8);
         bt.insert(6);
         bt.insert(16);
+        bt.insert(12);
+        bt.insert(14);
+        bt.insert(7);
         //bt.preorder();
-        bt.deleteNode(8);
+        bt.deleteNode(16);
         bt.preorder();
     }
 }
