@@ -2,6 +2,7 @@ package com.company;
 
 
 public class linkedList {
+    private int size = 0;
     private Node head;
     public void insert(int data) {
         //create a new node with given data
@@ -19,6 +20,7 @@ public class linkedList {
            }
            current.next = newNode;
         }
+         size ++;
     }
 
     public void display() {
@@ -28,5 +30,22 @@ public class linkedList {
             current = current.next;
         }
         System.out.println(current.data);
+    }
+
+    public void remove(int index) {
+        Node current = head;
+
+        //remove head
+        if (index ==0){
+            head = head.next;
+        }
+        else{
+            for (int i =0; i < index-1; i++) {
+                current = current.next;
+            }
+            current.next = current.next.next;
+        }
+
+
     }
 }

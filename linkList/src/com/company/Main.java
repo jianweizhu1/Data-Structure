@@ -7,6 +7,7 @@ public class Main {
         ls.insert(5);
         ls.insert(6);
         ls.insert(7);
+        ls.remove(1);
         ls.display();
     }
 }
